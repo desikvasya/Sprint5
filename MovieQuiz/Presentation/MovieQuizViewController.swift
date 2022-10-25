@@ -2,31 +2,15 @@ import UIKit
 
     // MARK: - Data Model
 
-    struct QuizQuestion {
+    private struct QuizQuestion {
       let image: String
       let text: String
       let correctAnswer: Bool
     }
-
-        let image1 = UIImage(named: "The Godfather")
-        let image2 = UIImage(named: "The Dark Knight")
-        let image3 = UIImage(named: "Kill Bill")
-        let image4 = UIImage(named: "The Avengers")
-        let image5 = UIImage(named: "Deadpool")
-        let image6 = UIImage(named: "The Green Knight")
-        let image7 = UIImage(named: "Old")
-        let image8 = UIImage(named: "The Ice Age Adventures of Buck Wild")
-        let image9 = UIImage(named: "Tesla")
-        let image10 = UIImage(named: "Vivarium")
-
-
-
-
-    
     // MARK: - ViewModels
 
     // для состояния "Вопрос задан"
-    struct QuizStepViewModel {
+    private struct QuizStepViewModel {
       let image: UIImage
       let question: String
       let questionNumber: String
@@ -44,12 +28,16 @@ final class MovieQuizViewController: UIViewController {
     
     @IBOutlet private var imageView: UIImageView!
     
+    
     @IBOutlet private var textLabel: UILabel!
     
     @IBOutlet private var counterLabel: UILabel!
     
     
     private var currentQuestionIndex: Int = 0
+    
+    private var correctAnswers: Int = 0
+
     
     private var currentQuestion: QuizQuestion {
             questions[currentQuestionIndex]
@@ -59,18 +47,21 @@ final class MovieQuizViewController: UIViewController {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = true
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-        currentQuestionIndex += 1
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-        currentQuestionIndex += 1
         
     }
     
-        private var correctAnswers: Int = 0
+    private func show(quiz step: QuizStepViewModel) {
+        imageView.image = step.image
+        counterLabel.text = step.questionNumber
+        textLabel.text = step.question
+    }
+    
              
     
     private func showNextQuestionOrResults(){
@@ -96,10 +87,12 @@ final class MovieQuizViewController: UIViewController {
         }
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
-        imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor
+        imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
+        
         imageView.layer.cornerRadius = 20
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
+            self.imageView.layer.borderColor = UIColor.clear.cgColor
         }
     }
         
@@ -126,9 +119,7 @@ final class MovieQuizViewController: UIViewController {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
 }
-    private func show(quiz step: QuizStepViewModel) {
-      // здесь мы заполняем нашу картинку, текст и счётчик данными
-    }
+   
     
     private let questions: [QuizQuestion] = [
             QuizQuestion(
@@ -174,30 +165,14 @@ final class MovieQuizViewController: UIViewController {
         ]
     
     
-    
-    
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.layer.cornerRadius = 20
+    
 
     }
 }
-    
-      
-    
-    // MARK: - Properties
 
-    
-
-    
-    
-    // MARK: - Lifecycle
-   
    
 
     
