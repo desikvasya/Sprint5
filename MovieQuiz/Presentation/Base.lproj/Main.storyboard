@@ -22,20 +22,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LUe-dV-k6V">
-                                <rect key="frame" x="20" y="54" width="374" height="774"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LUe-dV-k6V">
+                                <rect key="frame" x="20" y="54" width="374" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HJ-EB-T7f">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Вопрос:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cug-Vs-o20" userLabel="Question Title Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="1/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dft-dP-VkD" userLabel="Index Label">
-                                                <rect key="frame" x="338" y="0.0" width="36" height="50"/>
+                                                <rect key="frame" x="338" y="0.0" width="36" height="30"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -50,24 +50,24 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QAU-Ed-cQs">
-                                        <rect key="frame" x="0.0" y="611" width="374" height="103"/>
+                                        <rect key="frame" x="0.0" y="631" width="374" height="97"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма больше чем 6?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7a-kX-UAe" userLabel="Question Label">
-                                                <rect key="frame" x="42" y="13" width="279" height="77"/>
+                                                <rect key="frame" x="17" y="13" width="340" height="71"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="20" symbolic="YES" id="1Xk-1e-tW2"/>
                                             <constraint firstAttribute="bottom" secondItem="w7a-kX-UAe" secondAttribute="bottom" constant="13" id="SuA-bg-g0q"/>
                                             <constraint firstItem="w7a-kX-UAe" firstAttribute="top" secondItem="QAU-Ed-cQs" secondAttribute="top" constant="13" id="aWR-7z-89X"/>
-                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="42" id="y4w-dg-Leu"/>
+                                            <constraint firstAttribute="trailing" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="17" id="iGj-Bu-fqO"/>
+                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="17" id="y4w-dg-Leu"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-7h-yLj">
-                                        <rect key="frame" x="0.0" y="714" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="748" width="374" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ij-dV-1vf" userLabel="No_Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
@@ -119,7 +119,7 @@
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="KtE-a7-kST"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eKb-Cs-URl"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="kAa-XE-HDM"/>
-                            <constraint firstItem="LUe-dV-k6V" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-34" id="tbs-T7-FvG"/>
+                            <constraint firstItem="LUe-dV-k6V" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tbs-T7-FvG"/>
                             <constraint firstItem="sPD-vQ-44o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="z8f-QS-Mkn"/>
                         </constraints>
                     </view>
