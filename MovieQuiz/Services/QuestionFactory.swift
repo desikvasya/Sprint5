@@ -19,7 +19,7 @@ class QuestionFactory: QuestionFactoryProtocol {
         self.delegate = delegate
     }
     
-    private let questions: [QuizQuestion] = [
+     let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
             text: "Рейтинг этого фильма больше чем 6?",
