@@ -1,19 +1,16 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
-
-    // MARK: - QuestionFactoryDelegate
-    func didReceiveNextQuestion(question: QuizQuestion?) {
-        func didReceiveNextQuestion(question: QuizQuestion?) {
-            guard let question = question else {
-                return
-            }
-            
-            currentQuestion = question
-            let viewModel = convert(model: question)
-            DispatchQueue.main.async { [weak self] in
-                self?.show(quiz: viewModel)
-            }
+    
+    func didRecieveNextQuestion(question: QuizQuestion?) {
+        guard let question = question else {
+            return
+        }
+        
+        currentQuestion = question
+        let viewModel = convert(model: question)
+        DispatchQueue.main.async { [weak self] in
+            self?.show(quiz: viewModel)
         }
     }
     // MARK: - Lifecycle
@@ -48,7 +45,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
         let givenAnswer = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-        
     }
     
     @IBOutlet private var imageView: UIImageView!
@@ -58,9 +54,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     
     private func show(quiz step: QuizStepViewModel) {
+        // здесь мы заполняем нашу картинку, текст и счётчик данными
         imageView.image = step.image
-        counterLabel.text = step.questionNumber
         textLabel.text = step.question
+        counterLabel.text = step.questionNumber
     }
     
     
@@ -78,11 +75,11 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter?.showAlert(quiz: alertModel)
     }
     
-    private func convert(model: QuizQuestion) -> (QuizStepViewModel){
+    private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(
-            image: UIImage(named: model.image) ?? UIImage() ,
-            question: model.text,
-            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
+            image: UIImage(named: model.image) ?? UIImage(), // распаковываем картинку
+            question: model.text, // берём текст вопроса
+            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")// высчитываем номер вопроса
     }
     
     
@@ -105,22 +102,15 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private func showNextQuestionOrResults(){
         if currentQuestionIndex == questionsAmount - 1{
             let text = "Ваш результат: \(correctAnswers) из 10"
-            let viewModel = AlertModel (title: "Этот раунд окончен",
-                                        message: text,
-                                        buttonText: "Сыграть еще раз")
-            show(quiz: viewModel)
+            let viewModel = QuizResultsViewModel(
+                title: "Этот раунд окончен!",
+                text: text,
+                buttonText: "Сыграть ещё раз")
+            show(quiz: viewModel)// показать результат квиза
             
         } else {
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
-            
-            
         }
     }
 }
-    
-    
-    
-    
-    
-    

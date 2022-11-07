@@ -8,32 +8,24 @@
 import Foundation
 import UIKit
 
-struct AlertPresenter{
-    
-    var delegate: AlertProtocol?
-    init(delegate: AlertProtocol?) {
-        self.delegate = delegate
-    }
+struct AlertPresenter {
     
     weak var viewController: UIViewController?
-    
-    struct AlertPresenter {
+    func showAlert(quiz result: AlertModel) {
         
-        weak var viewController: UIViewController?
-        func showAlert(quiz result: AlertModel) {
-            
-            let alert = UIAlertController(
-                title: result.title,
-                message: result.message,
-                preferredStyle: .alert)
-            
-            let action = UIAlertAction(
-                title: result.buttonText,
-                style: .default)
+        let alert = UIAlertController(
+            title: result.title, // заголовок всплывающего окна
+            message: result.message, // текст во всплывающем окне
+            preferredStyle: .alert) // preferredStyle может быть .alert или .actionSheet
+        
+        let action = UIAlertAction(
+            title: result.buttonText,
+            style: .default,
+            handler: result.completion)
 
-            alert.addAction(action)
-            viewController?.present(alert, animated: true)
-        }
-
+        alert.addAction(action)
+        viewController?.present(alert, animated: true, completion: nil)
     }
+
 }
+
