@@ -21,14 +21,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
         alertPresenter = AlertPresenter(viewController: self)
+        statisticService = StatisticServiceImplementation()
+        
     }
     
-    private var currentQuestionIndex: Int = 0
+    
     private var correctAnswers: Int = 0
+    private var currentQuestionIndex: Int = 0
     private let questionsAmount: Int = 10
-    private var currentQuestion: QuizQuestion?
     private var questionFactory: QuestionFactoryProtocol?
+    private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
+    private var statisticService: StatisticService!
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
@@ -66,20 +70,20 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             title: result.title,
             message: result.text,
             buttonText: result.buttonText)
-            { [weak self] _ in
-                guard let self = self else { return }
-                self.currentQuestionIndex = 0
-                self.correctAnswers = 0
-                self.questionFactory?.requestNextQuestion()
+        { [weak self] _ in
+            guard let self = self else { return }
+            self.currentQuestionIndex = 0
+            self.correctAnswers = 0
+            self.questionFactory?.requestNextQuestion()
         }
         alertPresenter?.showAlert(quiz: alertModel)
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(
-            image: UIImage(named: model.image) ?? UIImage(), // распаковываем картинку
-            question: model.text, // берём текст вопроса
-            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")// высчитываем номер вопроса
+            image: UIImage(named: model.image) ?? UIImage(),
+            question: model.text,
+            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
     
     
@@ -100,17 +104,25 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func showNextQuestionOrResults(){
-        if currentQuestionIndex == questionsAmount - 1{
-            let text = "Ваш результат: \(correctAnswers) из 10"
+        if currentQuestionIndex == questionsAmount - 1 {
+            statisticService.store(correct: correctAnswers, total: questionsAmount)
+            let text = """
+                                   Ваш результат: \(correctAnswers)/\(questionsAmount)
+                                   Количество сыгранных квизов: \(statisticService.gamesCount)
+                                   Рекорд: \(statisticService.bestGame.toString())
+                                   Средняя точность: \(Int(statisticService.totalAccuracy))%
+                                   """
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
                 text: text,
-                buttonText: "Сыграть ещё раз")
-            show(quiz: viewModel)// показать результат квиза
+                buttonText: "Сыграть еще раз")
             
-        } else {
+            self.correctAnswers = 0
+            show(quiz: viewModel)
+        }else{
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
         }
     }
+    
 }

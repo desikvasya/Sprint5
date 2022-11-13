@@ -22,10 +22,10 @@ struct AlertPresenter {
             title: result.buttonText,
             style: .default,
             handler: result.completion)
-
+        
         alert.addAction(action)
         viewController?.present(alert, animated: true, completion: nil)
     }
-
+    
 }
 

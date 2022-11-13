@@ -19,7 +19,9 @@ class QuestionFactory: QuestionFactoryProtocol {
         self.delegate = delegate
     }
     
-     let questions: [QuizQuestion] = [
+    var index = 0
+    
+    var questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
             text: "Рейтинг этого фильма больше чем 6?",
@@ -62,12 +64,15 @@ class QuestionFactory: QuestionFactoryProtocol {
             correctAnswer: false)
     ]
     
-    func requestNextQuestion() {
-        guard let index = (0..<questions.count).randomElement() else {  // 2
+    func questionShuffle(){
+        questions.shuffle()
+    }
+    
+    func requestNextQuestion(){
+        guard let index = (0..<questions.count).randomElement() else {
             delegate?.didRecieveNextQuestion(question: nil)
             return
         }
-        
         let question = questions[safe: index]
         delegate?.didRecieveNextQuestion(question: question)
     }
