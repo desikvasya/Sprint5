@@ -17,12 +17,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.layer.cornerRadius = 20  // закругляю картинку
+        imageView.layer.cornerRadius = 20
+        view.layer.backgroundColor = UIColor.ypBlack.cgColor
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
         alertPresenter = AlertPresenter(viewController: self)
         statisticService = StatisticServiceImplementation()
-        
     }
     
     

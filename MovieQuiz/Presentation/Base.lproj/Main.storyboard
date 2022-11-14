@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="YS Display-Bold.ttf">
+            <string>YSDisplay-Bold</string>
+        </array>
         <array key="YS Display-Medium.ttf">
             <string>YSDisplay-Medium</string>
         </array>
@@ -52,9 +55,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QAU-Ed-cQs">
                                         <rect key="frame" x="0.0" y="631" width="374" height="97"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма больше чем 6?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7a-kX-UAe" userLabel="Question Label">
-                                                <rect key="frame" x="17" y="13" width="340" height="71"/>
-                                                <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма больше чем 6?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7a-kX-UAe" userLabel="Question Label">
+                                                <rect key="frame" x="42" y="13" width="290" height="71"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -62,8 +68,8 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="w7a-kX-UAe" secondAttribute="bottom" constant="13" id="SuA-bg-g0q"/>
                                             <constraint firstItem="w7a-kX-UAe" firstAttribute="top" secondItem="QAU-Ed-cQs" secondAttribute="top" constant="13" id="aWR-7z-89X"/>
-                                            <constraint firstAttribute="trailing" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="17" id="iGj-Bu-fqO"/>
-                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="17" id="y4w-dg-Leu"/>
+                                            <constraint firstAttribute="trailing" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="42" id="iGj-Bu-fqO"/>
+                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="42" id="y4w-dg-Leu"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-7h-yLj">

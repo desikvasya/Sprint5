@@ -54,7 +54,10 @@ class StatisticServiceImplementation: StatisticService {
         let totalStored = userDefaults.integer(forKey: Keys.total.rawValue)
         userDefaults.set(totalStored + amount, forKey: Keys.total.rawValue)
         
-        userDefaults.set(gamesCount + 1, forKey: Keys.gamesCount.rawValue)
+        gamesCount += 1
+//        1) В классе StatisticServiceImplementation очень много дублируюещегося кода. Вместо того чтобы внутри store обращаться к userDafaults вот так userDefaults.set(gamesCount + 1, forKey: Keys.gamesCount.rawValue), можно сделать вот так gamesCount += 1 – ведь переменная gamesCount, уже содержит необходимые геттеры и сеттеры через userDefaults. Тоже самое можно сделать и для свойств correct, count
+//        2) Можно не создавать JSONDecoder() и енкодер в bestGame, ведь уже заведены переменные jsonEncoder/jsonDecoder, можно использовать их.
+//        Подскажи пожалуйста как этот синтаксис правильно называется и где можно больше прочитать чтобы лучше понять ? Спасибо
     }
     
     var bestGame: GameRecord {
