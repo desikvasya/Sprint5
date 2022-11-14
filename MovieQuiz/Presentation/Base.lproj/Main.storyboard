@@ -56,7 +56,7 @@
                                         <rect key="frame" x="0.0" y="631" width="374" height="97"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма больше чем 6?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7a-kX-UAe" userLabel="Question Label">
-                                                <rect key="frame" x="42" y="13" width="290" height="71"/>
+                                                <rect key="frame" x="10" y="5" width="354" height="87"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
                                                 </accessibility>
@@ -66,10 +66,10 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="w7a-kX-UAe" secondAttribute="bottom" constant="13" id="SuA-bg-g0q"/>
-                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="top" secondItem="QAU-Ed-cQs" secondAttribute="top" constant="13" id="aWR-7z-89X"/>
-                                            <constraint firstAttribute="trailing" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="42" id="iGj-Bu-fqO"/>
-                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="42" id="y4w-dg-Leu"/>
+                                            <constraint firstAttribute="bottom" secondItem="w7a-kX-UAe" secondAttribute="bottom" constant="5" id="SuA-bg-g0q"/>
+                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="top" secondItem="QAU-Ed-cQs" secondAttribute="top" constant="5" id="aWR-7z-89X"/>
+                                            <constraint firstAttribute="trailing" secondItem="w7a-kX-UAe" secondAttribute="trailing" constant="10" id="iGj-Bu-fqO"/>
+                                            <constraint firstItem="w7a-kX-UAe" firstAttribute="leading" secondItem="QAU-Ed-cQs" secondAttribute="leading" constant="10" id="y4w-dg-Leu"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-7h-yLj">
