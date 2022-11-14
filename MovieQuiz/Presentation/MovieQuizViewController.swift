@@ -24,7 +24,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter = AlertPresenter(viewController: self)
         statisticService = StatisticServiceImplementation()
     }
-    
+//    исправил констрейты 5 по бокам, 10 сверху и снизу
     
     private var correctAnswers: Int = 0
     private var currentQuestionIndex: Int = 0
