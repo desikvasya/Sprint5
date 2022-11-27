@@ -22,8 +22,8 @@ struct MoviesLoader: MoviesLoading {
     }
     
     private enum DecodeError: Error {
-           case codeError
-       }
+        case codeError
+    }
     
     func loadMovies (handler: @escaping (Result<MostPopularMovies, Error>) -> Void) {
         networkClient.fetch(url: mostPopularMoviesUrl) { result in
@@ -32,11 +32,11 @@ struct MoviesLoader: MoviesLoading {
             case.success(let data) :
                 let topMovieList = try? JSONDecoder().decode(MostPopularMovies.self, from: data)
                 if let topMovieList = topMovieList {
-                                    handler(.success(topMovieList)) } else {
-                                        handler(.failure(DecodeError.codeError))
+                    handler(.success(topMovieList)) } else {
+                        handler(.failure(DecodeError.codeError))
                     }
-                }
             }
         }
-
+    }
+    
 }

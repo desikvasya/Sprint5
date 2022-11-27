@@ -121,6 +121,16 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-p0-fo0">
                                 <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOI-IB-sPe">
+                                <rect key="frame" x="155" y="441" width="108" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Reload" buttonSize="medium"/>
+                                <connections>
+                                    <action selector="reloadButtonOutlet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wi4-dK-Oeu"/>
+                                    <action selector="reloadImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SmZ-eX-rVO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,7 +148,10 @@
                         <outlet property="activityIndicator" destination="NU3-p0-fo0" id="rUy-DP-6Jo"/>
                         <outlet property="counterLabel" destination="Dft-dP-VkD" id="PtS-LP-bpk"/>
                         <outlet property="imageView" destination="sPD-vQ-44o" id="O3i-Ov-emU"/>
+                        <outlet property="noButton" destination="4Ij-dV-1vf" id="qwo-SW-iDo"/>
+                        <outlet property="reloadImageButton" destination="hOI-IB-sPe" id="gkF-Q4-EAm"/>
                         <outlet property="textLabel" destination="w7a-kX-UAe" id="Q9p-CZ-CpT"/>
+                        <outlet property="yesButton" destination="c2R-fJ-DUL" id="07a-oZ-yPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

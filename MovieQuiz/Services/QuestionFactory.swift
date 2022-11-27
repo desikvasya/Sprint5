@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 
 class QuestionFactory: QuestionFactoryProtocol {
+    func reloadImage() {
+    }
+    
+    func didFailToLoadData(with error: Error) {
+    }
+    
+    func didFailToLoadImage(with error: Error) {
+    }
+    
     var index = 0
     private var movies:[MostPopularMovie] = []
     private let moviesLoader: MoviesLoading
@@ -46,7 +55,10 @@ class QuestionFactory: QuestionFactoryProtocol {
             do{
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
-                print("failed to load image")
+                DispatchQueue.main.async { [weak self] in
+                          self?.delegate?.didFailToLoadImage(with: error)
+                }
+                
             }
             let rating = Float(movie.rating) ?? 0
             let currentRating = (4...9).randomElement()
@@ -64,12 +76,24 @@ class QuestionFactory: QuestionFactoryProtocol {
                 guard let self = self else {return}
                 self.delegate?.didRecieveNextQuestion(question: question)
             }
-        }
+            func reloadImage(by url:URL) {
+                do{
+                    imageData = try Data(contentsOf: movie.resizedImageURL)
+                } catch {
+                    DispatchQueue.main.async { [weak self] in
+                              self?.delegate?.didFailToLoadData(with: error)
+                    }
+                    
+                }
+                
+            }
+    }
+        
     }
     func resetIndex(){
         index = 0
     }
-}
+    
 
 
 
@@ -135,3 +159,4 @@ class QuestionFactory: QuestionFactoryProtocol {
 //    }
 
 
+}
