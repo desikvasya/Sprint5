@@ -121,14 +121,13 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-p0-fo0">
                                 <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOI-IB-sPe">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOI-IB-sPe">
                                 <rect key="frame" x="155" y="441" width="108" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Reload" buttonSize="medium"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Reload" buttonSize="large"/>
                                 <connections>
-                                    <action selector="reloadButtonOutlet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wi4-dK-Oeu"/>
-                                    <action selector="reloadImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SmZ-eX-rVO"/>
+                                    <action selector="reloadImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RpD-UA-4bi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -138,9 +137,11 @@
                             <constraint firstItem="NU3-p0-fo0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HNP-Yv-5cT"/>
                             <constraint firstItem="NU3-p0-fo0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KsC-Ao-K3A"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="KtE-a7-kST"/>
+                            <constraint firstItem="hOI-IB-sPe" firstAttribute="centerY" secondItem="sPD-vQ-44o" secondAttribute="centerY" id="bEM-Zh-DbL"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eKb-Cs-URl"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="kAa-XE-HDM"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tbs-T7-FvG"/>
+                            <constraint firstItem="hOI-IB-sPe" firstAttribute="centerX" secondItem="sPD-vQ-44o" secondAttribute="centerX" id="xrc-nv-4Bm"/>
                             <constraint firstItem="sPD-vQ-44o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="z8f-QS-Mkn"/>
                         </constraints>
                     </view>

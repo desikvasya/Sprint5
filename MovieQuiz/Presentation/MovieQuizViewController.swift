@@ -40,8 +40,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         statisticService = StatisticServiceImplementation()
         showLoadingIndicator()
         questionFactory?.loadData()
-        questionFactory?.reloadImage()
-
+        
         
         questionFactory?.requestNextQuestion()
         alertPresenter = AlertPresenter(viewController: self)
@@ -73,11 +72,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     @IBAction private func reloadImage(_ sender: UIButton) {
-        func didLoadDataFromServer() {
-            activityIndicator.isHidden = true
-            questionFactory?.requestNextQuestion()
-            
-        }
+        questionFactory?.reloadImage()
+        reloadImageButton.isHidden = true
     }
     
     //MARK: - Outlets
@@ -118,6 +114,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
+//        yesButton.isEnabled = true
+//        noButton.isEnabled = true
     }
     
     private func show(quiz result: QuizResultsViewModel) {
@@ -155,20 +153,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             correctAnswers += 1
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self]  in
-            guard let self = self else {return}
-            UIView.animate(
-              withDuration: 1.0,
-              animations: {
+        UIView.animate(
+            withDuration: 1.0,
+            animations: {
                 self.imageView.layer.borderColor = UIColor.clear.cgColor
-              }, completion: { [weak self] _ in
+            }, completion: { [weak self] _ in
                 self?.showNextQuestionOrResults()
-              }
-            )
-            self.yesButton.isEnabled = true
-            self.noButton.isEnabled = true
-        }
+                self?.yesButton.isEnabled = true
+                self?.noButton.isEnabled = true
+            }
+        )
     }
+    
     
     private func showNextQuestionOrResults(){
         if currentQuestionIndex == questionsAmount - 1 {
