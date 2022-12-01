@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class QuestionFactory: QuestionFactoryProtocol {
-    func reloadImage() {
-    }
+    //    func reloadImage() {
+    //    }
     
     func didFailToLoadData(with error: Error) {
     }
@@ -56,7 +56,7 @@ class QuestionFactory: QuestionFactoryProtocol {
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
                 DispatchQueue.main.async { [weak self] in
-                    self?.delegate?.didFailToLoadImage(with: error)
+                    self?.delegate?.didFailToLoadData(with: error)
                 }
                 
             }
@@ -76,17 +76,17 @@ class QuestionFactory: QuestionFactoryProtocol {
                 guard let self = self else {return}
                 self.delegate?.didRecieveNextQuestion(question: question)
             }
-            func reloadImage(by url:URL) {
-                do{
-                    imageData = try Data(contentsOf: movie.resizedImageURL)
-                } catch {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.delegate?.didFailToLoadData(with: error)
-                    }
-                    
-                }
-                
-            }
+            //            func reloadImage(by url:URL) {
+            //                do{
+            //                    imageData = try Data(contentsOf: movie.resizedImageURL)
+            //                } catch {
+            //                    DispatchQueue.main.async { [weak self] in
+            //                        self?.delegate?.didFailToLoadData(with: error)
+            //                    }
+            //
+            //                }
+            //
+            //            }
         }
         
     }

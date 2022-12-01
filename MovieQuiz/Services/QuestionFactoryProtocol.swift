@@ -13,6 +13,6 @@ protocol QuestionFactoryProtocol {
     func loadData()
     func didFailToLoadData(with error: Error) // сообщение об ошибке загрузки
     func didFailToLoadImage(with error: Error) // сообщение об ошибке загрузки картинки
-    func reloadImage()
+//    func reloadImage()
 }
 

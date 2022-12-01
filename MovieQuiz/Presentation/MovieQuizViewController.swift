@@ -1,11 +1,12 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
-    func didFailToLoadImage(with error: Error) {
-        questionFactory?.reloadImage()
-        reloadImageButton.isHidden = false
-        
-    }
+    
+    //    func didFailToLoadImage(with error: Error) {
+    //        questionFactory?.reloadImage()
+    //        reloadImageButton.isHidden = false
+    //
+    //    }
     
     func didLoadDataFromServer() {
         activityIndicator.isHidden = true
@@ -44,7 +45,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         
         questionFactory?.requestNextQuestion()
         alertPresenter = AlertPresenter(viewController: self)
-        reloadImageButton.isHidden = true
+        //        reloadImageButton.isHidden = true
     }
     
     private var correctAnswers: Int = 0
@@ -71,10 +72,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
     }
     
-    @IBAction private func reloadImage(_ sender: UIButton) {
-        questionFactory?.reloadImage()
-        reloadImageButton.isHidden = true
-    }
+    //    @IBAction private func reloadImage(_ sender: UIButton) {
+    //        questionFactory?.reloadImage()
+    //        reloadImageButton.isHidden = true
+    //    }
     
     //MARK: - Outlets
     @IBOutlet private var imageView: UIImageView!
@@ -83,7 +84,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var noButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var reloadImageButton: UIButton!
+    //    @IBOutlet weak var reloadImageButton: UIButton!
     
     private func showLoadingIndicator(){
         activityIndicator.isHidden = false
@@ -114,8 +115,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
-//        yesButton.isEnabled = true
-//        noButton.isEnabled = true
+        yesButton.isEnabled = true
+        noButton.isEnabled = true
     }
     
     private func show(quiz result: QuizResultsViewModel) {
@@ -159,8 +160,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
                 self.imageView.layer.borderColor = UIColor.clear.cgColor
             }, completion: { [weak self] _ in
                 self?.showNextQuestionOrResults()
-                self?.yesButton.isEnabled = true
-                self?.noButton.isEnabled = true
+                //                self?.yesButton.isEnabled = true
+                //                self?.noButton.isEnabled = true
             }
         )
     }
