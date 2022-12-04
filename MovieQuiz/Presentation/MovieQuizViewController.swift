@@ -62,6 +62,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         guard let currentQuestion = currentQuestion else {
             return
         }
+        yesButton.isEnabled = false
         showAnswerResult(isCorrect: currentQuestion.correctAnswer)
     }
     
@@ -69,6 +70,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         guard let currentQuestion = currentQuestion else {
             return
         }
+        noButton.isEnabled = false
         showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
     }
     
@@ -112,11 +114,19 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private func show(quiz step: QuizStepViewModel) {
         // здесь мы заполняем нашу картинку, текст и счётчик данными
-        imageView.image = step.image
+        UIView.animate(withDuration: 1.0,
+                       animations: {
+            self.imageView.image = step.image
+        },
+                       completion: { [weak self] _ in
+            self?.yesButton.isEnabled = true
+            self?.noButton.isEnabled = true
+        }
+        )
+        
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
-        yesButton.isEnabled = true
-        noButton.isEnabled = true
+        
     }
     
     private func show(quiz result: QuizResultsViewModel) {
@@ -147,21 +157,23 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
         imageView.layer.cornerRadius = 20
         
-        noButton.isEnabled = false
-        yesButton.isEnabled = false
+        //        noButton.isEnabled = false
+        //        yesButton.isEnabled = false
         
         if isCorrect {
             correctAnswers += 1
         }
         
         UIView.animate(
-            withDuration: 1.0,
+            withDuration: 2.0,
             animations: {
                 self.imageView.layer.borderColor = UIColor.clear.cgColor
-            }, completion: { [weak self] _ in
+                
+            },
+            completion: { [weak self] _ in
                 self?.showNextQuestionOrResults()
-                //                self?.yesButton.isEnabled = true
-                //                self?.noButton.isEnabled = true
+                //                                self?.yesButton.isEnabled = true
+                //                                self?.noButton.isEnabled = true
             }
         )
     }

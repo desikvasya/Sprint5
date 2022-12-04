@@ -12,8 +12,14 @@ protocol MoviesLoading {
 }
 
 struct MoviesLoader: MoviesLoading {
-    private let networkClient = NetworkClient()
+  // MARK: - NetworkClient
+  private let networkClient: NetworkRouting
+  
+  init(networkClient: NetworkRouting = NetworkClient()) {
+      self.networkClient = networkClient
+  }
     
+    // MARK: - URL
     private var mostPopularMoviesUrl: URL {
         guard let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_lkq163dk") else {
             preconditionFailure("Unable to construct mostPopularMoviesUrl")
@@ -21,22 +27,19 @@ struct MoviesLoader: MoviesLoading {
         return url
     }
     
-    private enum DecodeError: Error {
-        case codeError
-    }
-    
-    func loadMovies (handler: @escaping (Result<MostPopularMovies, Error>) -> Void) {
+    func loadMovies(handler: @escaping (Result<MostPopularMovies, Error>) -> Void) {
         networkClient.fetch(url: mostPopularMoviesUrl) { result in
             switch result {
-            case.failure(let error) : handler(.failure(error))
-            case.success(let data) :
-                let topMovieList = try? JSONDecoder().decode(MostPopularMovies.self, from: data)
-                if let topMovieList = topMovieList {
-                    handler(.success(topMovieList)) } else {
-                        handler(.failure(DecodeError.codeError))
-                    }
+            case .success(let data):
+                do {
+                    let mostPopularMovies = try JSONDecoder().decode(MostPopularMovies.self, from: data)
+                    handler(.success(mostPopularMovies))
+                } catch {
+                    handler(.failure(error))
+                }
+            case .failure(let error):
+                handler(.failure(error))
             }
         }
     }
-    
 }
