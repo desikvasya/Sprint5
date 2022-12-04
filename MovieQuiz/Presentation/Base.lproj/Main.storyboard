@@ -32,13 +32,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Вопрос:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cug-Vs-o20" userLabel="Question Title Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="333.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="1/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dft-dP-VkD" userLabel="Index Label">
-                                                <rect key="frame" x="333.5" y="0.0" width="40.5" height="30"/>
+                                                <rect key="frame" x="338" y="0.0" width="36" height="30"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -118,10 +118,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-p0-fo0">
+                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NU3-p0-fo0" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HNP-Yv-5cT"/>
+                            <constraint firstItem="NU3-p0-fo0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KsC-Ao-K3A"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="KtE-a7-kST"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eKb-Cs-URl"/>
                             <constraint firstItem="LUe-dV-k6V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="kAa-XE-HDM"/>
@@ -130,9 +135,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="NU3-p0-fo0" id="rUy-DP-6Jo"/>
                         <outlet property="counterLabel" destination="Dft-dP-VkD" id="PtS-LP-bpk"/>
                         <outlet property="imageView" destination="sPD-vQ-44o" id="O3i-Ov-emU"/>
+                        <outlet property="noButton" destination="4Ij-dV-1vf" id="qwo-SW-iDo"/>
                         <outlet property="textLabel" destination="w7a-kX-UAe" id="Q9p-CZ-CpT"/>
+                        <outlet property="yesButton" destination="c2R-fJ-DUL" id="07a-oZ-yPZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
