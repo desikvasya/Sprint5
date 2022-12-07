@@ -18,6 +18,9 @@ struct AlertPresenter {
             message: result.message, // текст во всплывающем окне
             preferredStyle: .alert) // preferredStyle может быть .alert или .actionSheet
         
+        alert.view.accessibilityIdentifier = "Alert"
+
+        
         let action = UIAlertAction(
             title: result.buttonText,
             style: .default,

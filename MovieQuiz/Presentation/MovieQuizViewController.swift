@@ -2,6 +2,8 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
+    private let presenter = MovieQuizPresenter()
+    
     //    func didFailToLoadImage(with error: Error) {
     //        questionFactory?.reloadImage()
     //        reloadImageButton.isHidden = false
@@ -24,7 +26,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             return
         }
         currentQuestion = question
-        let viewModel = convert(model: question)
+        let viewModel = presenter.convert(model: question)
         DispatchQueue.main.async { [weak self] in
             self?.show(quiz: viewModel)
         }
@@ -36,6 +38,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.layer.cornerRadius = 20
         view.layer.backgroundColor = UIColor.ypBlack.cgColor
         
+        presenter.viewController = self
         
         questionFactory = QuestionFactory(delegate: self, moviesLoader: MoviesLoader())
         statisticService = StatisticServiceImplementation()
@@ -49,8 +52,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private var correctAnswers: Int = 0
-    private var currentQuestionIndex: Int = 0
-    private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var alertPresenter: AlertPresenter?
@@ -101,6 +102,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private func showNetworkError(message: String) {
         hideLoadingIndicator() // скрываем индикатор загрузки
+        self.presenter.resetQuestionIndex()
+        self.correctAnswers = 0
         
         let errorModel = UIAlertController(title: "Что-то пошло не так(", message: message, preferredStyle: .alert)
         errorModel.addAction(UIAlertAction(title: "Попробуйте еще раз", style: .default) { action in
@@ -136,21 +139,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             buttonText: result.buttonText)
         { [weak self] _ in
             guard let self = self else { return }
-            self.currentQuestionIndex = 0
             self.correctAnswers = 0
             self.questionFactory?.requestNextQuestion()
         }
         alertPresenter?.showAlert(quiz: alertModel)
     }
     
-    private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        return QuizStepViewModel(
-            image: UIImage(data: model.image) ?? UIImage(),
-            question: model.text,
-            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
-    }
-    
-    private func showAnswerResult(isCorrect: Bool) {
+    func showAnswerResult(isCorrect: Bool) {
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -180,10 +175,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     
     private func showNextQuestionOrResults(){
-        if currentQuestionIndex == questionsAmount - 1 {
-            statisticService.store(correct: correctAnswers, total: questionsAmount)
+        if presenter.isLastQuestion() {
+            statisticService.store(correct: correctAnswers, total: presenter.questionsAmount)
             let text = """
-                                   Ваш результат: \(correctAnswers)/\(questionsAmount)
+                                   Ваш результат: \(correctAnswers)/\(presenter.questionsAmount)
                                    Количество сыгранных квизов: \(statisticService.gamesCount)
                                    Рекорд: \(statisticService.bestGame.toString())
                                    Средняя точность: \(Int(statisticService.totalAccuracy))%
@@ -196,7 +191,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             self.correctAnswers = 0
             show(quiz: viewModel)
         } else {
-            currentQuestionIndex += 1
+            presenter.switchToNextQuestion()
             questionFactory?.requestNextQuestion()
         }
     }
