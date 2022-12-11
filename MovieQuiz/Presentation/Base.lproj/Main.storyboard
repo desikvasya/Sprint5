@@ -49,6 +49,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="The Godfather" translatesAutoresizingMaskIntoConstraints="NO" id="sPD-vQ-44o" userLabel="Preview Image">
                                         <rect key="frame" x="0.0" y="50" width="374" height="561"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Poster"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sPD-vQ-44o" secondAttribute="height" multiplier="2:3" id="nNL-jz-3qg"/>
                                         </constraints>
